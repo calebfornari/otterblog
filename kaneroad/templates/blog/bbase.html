@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+{% load admin_urls %}
+<head>
+    <title>{% block title %}Blog{% endblock %}</title>
+    <!-- <meta http-equiv="refresh" content="2">  -->
+    <link rel="stylesheet" href="/media/style.css" type="text/css" media="screen"
+      charset="utf-8" />
+
+    <style type="text/css">
+        * {
+            color: #666633;
+            font-size: 0.95em;
+        }
+        #banner {margin: 0 auto; width: 800px; border: 0px solid #ccc; }
+        h1 {font-size: 60px; text-align: center; }
+
+        #menu a {
+            color: #993300;
+            text-decoration: none;
+            border-top: 0px solid;
+            border-bottom: 0px solid;
+            border-right: 0px solid;
+            padding-right: 3px;
+            padding-left: 3px;
+            font-size: 0.9em;
+            margin-left: 30px;
+        }
+
+        a:hover {
+            background: #eeebeb;
+            border-top: 1px solid #aaa;
+            border-bottom: 1px solid #aaa;
+            color: #555;
+        }
+        #sidebar{ width: 200px;}
+        #content { width: 650px; }
+        #container { margin: auto; width: 970px; border: 1px solid #ccc; background-color:#FFFFFF; }
+        p { font-size: 1.1em; }
+        h3 { margin-left: 30px; display: inline; }
+    </style>
+
+</head>
+
+<body style="background-color:#A36200;">
+
+    <div id="container">
+
+        <div id= "banner">
+        {% block banner %}
+            <h1>Kaneroad.net</h1>
+        {% endblock %} </div>
+        <div id="sidebar"> {% block sidebar %} {% endblock %} </div>
+        <div id="menu">
+            {% block nav-global %}
+
+                <!-- MENU -->
+                <h3>MyBlog</h3>
+                {% if user.is_staff %}
+                <a href="{% url 'admin:index' %}">Admin</a>
+                     <a href="{% url 'admin:blog_post_add' %}">Add post</a>
+                {% endif %}
+
+            {% endblock %}
+        </div>
+
+        <div id="content">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+
+</body>
+</html>
+
